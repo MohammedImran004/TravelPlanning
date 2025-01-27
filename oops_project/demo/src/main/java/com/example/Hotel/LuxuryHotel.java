@@ -1,6 +1,5 @@
 package com.example.Hotel;
-import java.util.*;
-class LuxuryHotel extends Hotel{
+public class LuxuryHotel extends Hotel{
     public void SingleRoom(){
         System.out.println("Single Room Details:");
         System.out.println("1. Cost: 5000 per night");

@@ -1,6 +1,9 @@
 package com.example;
 import java.util.Scanner;
 
+import com.example.Hotel.Hotel;
+import com.example.Hotel.LuxuryHotel;
+import com.example.Hotel.NormalHotel;
 import com.example.Places.AndamanAndNicobar;
 import com.example.Places.Destination;
 import com.example.Places.Goa;
@@ -17,6 +20,8 @@ public class Main {
         Destination rajasthan = new Rajasthan();
         Destination himachal = new HimachalPradesh();
         Destination andaman = new AndamanAndNicobar();
+        Hotel luxury = new LuxuryHotel();
+        Hotel normal = new NormalHotel();
         while (true) {
             System.out.println("Enter 1 for login And 2 for signup");
             int login = sc.nextInt();
@@ -83,8 +88,6 @@ public class Main {
                                     System.out.println("Enter 1 for Single Room");
                                     System.out.println("Enter 2 for Double Room");
                                     System.out.println("Enter 3 for Triple Room");
-                                    
-
                                     int roomChoice = sc.nextInt();
                                     while(members>0){
                                         roomChoice = sc.nextInt();
@@ -94,18 +97,18 @@ public class Main {
                                             int singleRoom = sc.nextInt();
                                             System.out.println("You Have Booked "+singleRoom+" Single Rooms");
                                             members-=singleRoom;
-                                            user.RoomDetails("Single Room", singleRoom);
+                                            // user.RoomDetails("Single Room", singleRoom);
                                         }
                                         else if(roomChoice==2 && members>=2){
                                             System.out.println("How many Double Rooms You Need");
                                             int doubleRoom = sc.nextInt();
-                                            user.RoomDetails("Double Room",doubleRoom);
+                                            // user.RoomDetails("Double Room",doubleRoom);
                                             members-=doubleRoom;
                                         }
                                         else if(roomChoice==3 && members>=3){
                                             System.out.println("How many Triple Rooms You Need:");
                                             int tripleRoom = sc.nextInt();
-                                            user.RoomDetails("Triple Room",tripleRoom);
+                                            // user.RoomDetails("Triple Room",tripleRoom);
                                             members-=tripleRoom;
                                         }
                                         else{
@@ -113,7 +116,6 @@ public class Main {
                                         }
                                     }
                                     System.out.println("Your Package is Booked Successfully");
-                                    
                             default: 
                                 System.out.println("Invalid Option");
                                 continue;
