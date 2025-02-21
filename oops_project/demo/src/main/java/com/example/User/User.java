@@ -66,8 +66,8 @@ public class User {
         System.out.println("Signup successful!");
     }
 
-    public void addUserDetails(String name, String age, String address, String phone, int members) {
-        // userData.saveUserDetails(name, age, address, phone, members);
+    public void addUserDetails(String email,String password,String name, String age, String address, String phone, int members) {
+        userData.saveUserDetails(email,password,name, age, address, phone, members);
     }
 
     public void addTransportDetails(String transport) {

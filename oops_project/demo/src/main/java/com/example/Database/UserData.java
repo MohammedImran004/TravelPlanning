@@ -12,8 +12,8 @@ public class UserData {
              PreparedStatement stmt = connection.prepareStatement(query)) {
              stmt.setString(1,email);
              stmt.setString(2,password);
-                stmt.executeUpdate();
-                System.out.println("Login details saved successfully.");
+             stmt.executeUpdate();
+             System.out.println("Login details saved successfully.");
         } catch (SQLException e) {
             System.err.println("Error saving login details!");
             e.printStackTrace();
@@ -39,4 +39,23 @@ public class UserData {
         }
         return false;
     }
-}
+    public void saveUserDetails(String email,String password,String name,String age,String address,String phone,int members){
+        String query = "INSERT INTO USERS (email,password,name,age,address,phone,members) VALUES (?,?,?,?,?,?,?)";
+        try(Connection conn = DatabaseConnection.getConnection();
+        PreparedStatement stmt = conn.prepareStatement(query)){
+            stmt.setString(1, email);       // Set email value
+            stmt.setString(2, password);    // Set password value
+            stmt.setString(3, name);        // Set name value
+            stmt.setString(4, age);         // Set age value
+            stmt.setString(5, address);     // Set address value
+            stmt.setString(6, phone);       // Set phone value
+            stmt.setInt(7, members);        // Set members value
+            stmt.executeUpdate();
+                System.out.println("User details saved successfully.");
+                }catch(SQLException e){
+                    System.err.println("Error saving user details!");
+                    e.printStackTrace();
+                }
+        }  
+    }
+
