@@ -25,9 +25,9 @@ public class App {
         UserController userController = new UserController(user, userView);
 
         if (role == 1) {
-            adminController.handleAdminActions();
+            adminController.loginflow();
         } else if (role == 2) {
-            userController.handleUserActions();
+            userController.loginflow();
         } else {
             System.out.println("Invalid choice. Exiting...");
         }

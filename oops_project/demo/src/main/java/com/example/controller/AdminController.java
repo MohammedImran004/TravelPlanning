@@ -10,9 +10,22 @@ public class AdminController {
         this.view = view;
         this.admin = admin;
     }
-    public void login(){
-        if(view.loginDetails(admin.getEmail(),admin.getPassword())){
+    public void login(String email,String Password){
+        if(admin.getEmail().equals(email),admin.getPassword().equalsPassword())){
 
+        }
+    }
+    public void loginflow(){
+        System.out.print("Enter Email: ");
+        String email = sc.next();
+        System.out.print("Enter Password: ");
+        String password = sc.next();
+        
+        boolean loggedIn = login(email, password);
+        if (loggedIn) {
+            System.out.println("Login successful!");
+        } else {
+            System.out.println("Invalid credentials!");
         }
     }
 }
