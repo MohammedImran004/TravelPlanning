@@ -1,5 +1,5 @@
-package com.example.view;
+// package com.example.view;
 
-public class UserView {
+// public class UserView {
     
-}
+// }

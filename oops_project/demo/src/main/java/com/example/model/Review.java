@@ -3,10 +3,10 @@ package com.example.model;
 public class Review {
     private int rating;
     private String comment;
-    Review(int rating, String comment) {
-        this.rating = rating;
-        this.comment = comment;
-    }
+    // Review(int rating, String comment) {
+    //     this.rating = rating;
+    //     this.comment = comment;
+    // }
     public int getRating() {
         return rating;
     }

@@ -1,15 +1,10 @@
 package com.example;
-
 import com.example.controller.AdminController;
-import com.example.controller.UserController;
 import com.example.model.Admin;
 import com.example.model.User;
 import com.example.view.AdminView;
-import com.example.view.UserView;
-
 public class App {
     private int role;
-
     public App(int role) {
         this.role = role;
     }
@@ -19,15 +14,13 @@ public class App {
         User user = new User();
 
         AdminView adminView = new AdminView();
-        UserView userView = new UserView();
-
-        AdminController adminController = new AdminController(admin, adminView);
-        UserController userController = new UserController(user, userView);
-
+        // UserView userView = new UserView();
+        AdminController adminController = new AdminController();
+        // UserController userController = new UserController();
         if (role == 1) {
-            adminController.loginflow();
+            adminController.login();
         } else if (role == 2) {
-            userController.loginflow();
+            // userController.login();
         } else {
             System.out.println("Invalid choice. Exiting...");
         }
