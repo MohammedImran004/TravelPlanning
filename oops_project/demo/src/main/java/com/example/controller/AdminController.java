@@ -1,9 +1,8 @@
 package com.example.controller;
 
-import java.sql.Connection;
 import java.util.List;
 import java.util.Scanner;
-import com.example.controller.*;
+
 import com.example.dao.AdminDAO;
 import com.example.model.Admin;
 import com.example.view.AdminView;
@@ -132,21 +131,25 @@ public class AdminController {
     public void updateAdmin() {
         System.out.print("Enter Admin ID to update: ");
         int id = sc.nextInt();
-
+        sc.nextLine(); // Consume the newline character
+    
         Admin admin = adminDAO.getAdminById(id);
         if (admin != null) {
             System.out.print("Enter New Name (or press Enter to keep existing: " + admin.getName() + "): ");
-            String name = sc.next();
+            String name = sc.nextLine();
             System.out.print("Enter New Email (or press Enter to keep existing: " + admin.getEmail() + "): ");
-            String email = sc.next();
+            String email = sc.nextLine();
             System.out.print("Enter New Password (or press Enter to keep existing password): ");
-            String password = sc.next();
-
-            if (name.isEmpty()) name = admin.getName();
-            if (email.isEmpty()) email = admin.getEmail();
-            if (password.isEmpty()) password = admin.getPassword();
-
-            Admin updatedAdmin = new Admin(name, email, password);
+            String password = sc.nextLine();
+    
+            // Preserve existing values if input is empty
+            if (name.trim().isEmpty()) name = admin.getName();
+            if (email.trim().isEmpty()) email = admin.getEmail();
+            if (password.trim().isEmpty()) password = admin.getPassword();
+    
+            // Ensure updated admin object retains the original ID
+            Admin updatedAdmin = new Admin(id, name, email, password); 
+            
             if (adminDAO.updateAdmin(updatedAdmin)) {
                 System.out.println("Admin updated successfully!");
             } else {
@@ -156,8 +159,7 @@ public class AdminController {
             System.out.println("Admin not found!");
         }
     }
-
-    // Delete an admin
+    
     public void deleteAdmin() {
         System.out.print("Enter Admin ID to delete: ");
         int id = sc.nextInt();

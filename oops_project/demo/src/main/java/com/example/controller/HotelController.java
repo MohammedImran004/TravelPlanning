@@ -15,15 +15,14 @@ public class HotelController {
         this.sc = new Scanner(System.in);
     }
 
+    // Add a new hotel
     public void addHotel() {
         System.out.print("Enter Hotel Name: ");
         String name = sc.next();
-        System.out.print("Enter Location: ");
-        String location = sc.next();
-        System.out.print("Enter Rating (out of 5): ");
-        double rating = sc.nextDouble();
+        System.out.print("Enter Hotel Type: ");
+        String type = sc.next();
 
-        Hotel hotel = new Hotel(name, location, rating);
+        Hotel hotel = new Hotel(0, name, type); // Assuming ID is auto-generated
         if (hotelDAO.addHotel(hotel)) {
             System.out.println("Hotel added successfully!");
         } else {
@@ -31,13 +30,19 @@ public class HotelController {
         }
     }
 
+    // View all hotels
     public void viewHotels() {
         List<Hotel> hotels = hotelDAO.getAllHotels();
-        for (Hotel h : hotels) {
-            System.out.println(h);
+        if (hotels.isEmpty()) {
+            System.out.println("No hotels available.");
+        } else {
+            for (Hotel h : hotels) {
+                System.out.println(h);
+            }
         }
     }
 
+    // Update an existing hotel
     public void updateHotel() {
         System.out.print("Enter Hotel ID to update: ");
         int id = sc.nextInt();
@@ -45,15 +50,14 @@ public class HotelController {
 
         if (hotel != null) {
             System.out.print("Enter New Name (or press Enter to keep existing): ");
-            String name = sc.next();
-            System.out.print("Enter New Location (or press Enter to keep existing): ");
-            String location = sc.next();
-            System.out.print("Enter New Rating (or press Enter to keep existing): ");
-            double rating = sc.nextDouble();
+            sc.nextLine(); // Consume the newline character
+            String name = sc.nextLine();
+
+            System.out.print("Enter New Type (or press Enter to keep existing): ");
+            String type = sc.nextLine();
 
             if (!name.isEmpty()) hotel.setName(name);
-            if (!location.isEmpty()) hotel.setLocation(location);
-            if (rating > 0) hotel.setRating(rating);
+            if (!type.isEmpty()) hotel.setType(type);
 
             if (hotelDAO.updateHotel(hotel)) {
                 System.out.println("Hotel updated successfully!");
@@ -65,6 +69,7 @@ public class HotelController {
         }
     }
 
+    // Delete a hotel
     public void deleteHotel() {
         System.out.print("Enter Hotel ID to delete: ");
         int id = sc.nextInt();

@@ -1,27 +1,21 @@
 package com.example.model;
-
 public class Hotel {
     private int id;
     private String name;
-    private String location;
-    private double rating;
+    private String type;
 
-    // Constructor for adding a new hotel (without ID)
-    public Hotel(String name, String location, double rating) {
-        this.name = name;
-        this.location = location;
-        this.rating = rating;
+    // Constructor to fetch using destination ID
+    public Hotel(int id) {
+        this.id = id;
     }
 
-    // Constructor for retrieving/updating hotel (with ID)
-    public Hotel(int id, String name, String location, double rating) {
+    // Constructor to fetch all hotels
+    public Hotel(int id, String name, String type) {
         this.id = id;
         this.name = name;
-        this.location = location;
-        this.rating = rating;
+        this.type = type;
     }
 
-    // Getters and Setters
     public int getId() {
         return id;
     }
@@ -38,24 +32,16 @@ public class Hotel {
         this.name = name;
     }
 
-    public String getLocation() {
-        return location;
+    public String getType() {
+        return type;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public double getRating() {
-        return rating;
-    }
-
-    public void setRating(double rating) {
-        this.rating = rating;
+    public void setType(String type) {
+        this.type = type;
     }
 
     @Override
     public String toString() {
-        return "Hotel [ID=" + id + ", Name=" + name + ", Location=" + location + ", Rating=" + rating + "]";
+        return "Hotel {ID=" + id + ", Name='" + name + "', Type='" + type + "'}";
     }
 }
