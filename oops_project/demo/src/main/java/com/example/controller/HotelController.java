@@ -15,21 +15,6 @@ public class HotelController {
         this.sc = new Scanner(System.in);
     }
 
-    // Add a new hotel
-    public void addHotel() {
-        System.out.print("Enter Hotel Name: ");
-        String name = sc.next();
-        System.out.print("Enter Hotel Type: ");
-        String type = sc.next();
-
-        Hotel hotel = new Hotel(0, name, type); // Assuming ID is auto-generated
-        if (hotelDAO.addHotel(hotel)) {
-            System.out.println("Hotel added successfully!");
-        } else {
-            System.out.println("Failed to add hotel.");
-        }
-    }
-
     // View all hotels
     public void viewHotels() {
         List<Hotel> hotels = hotelDAO.getAllHotels();
@@ -68,7 +53,13 @@ public class HotelController {
             System.out.println("Hotel not found!");
         }
     }
-
+    public void viewHotelsByDestinationId(){
+        int choice = sc.nextInt();
+        List<Hotel> hotel = hotelDAO.getHotelByDestinationId(choice);
+        for(Hotel ht : hotel){
+            System.out.print(ht);
+        }
+    }
     // Delete a hotel
     public void deleteHotel() {
         System.out.print("Enter Hotel ID to delete: ");

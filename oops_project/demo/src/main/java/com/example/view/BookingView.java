@@ -29,7 +29,6 @@ public class BookingView {
         scanner.nextLine(); // Consume newline
         System.out.print("Enter Booking Date (YYYY-MM-DD): ");
         String bookingDate = scanner.nextLine();
-
         return new Booking(userId, destinationId, hotelId, travelMode, members, bookingDate);
     }
 

@@ -2,6 +2,7 @@ package com.example.controller;
 
 import java.util.List;
 import java.util.Scanner;
+
 import com.example.dao.BookingDAO;
 import com.example.model.Booking;
 import com.example.view.BookingView;
@@ -16,23 +17,6 @@ public class BookingController {
         this.bookingView = new BookingView();
         this.sc = new Scanner(System.in);
     }
-
-    public void addBooking() {
-        System.out.print("Enter User ID: ");
-        int userId = sc.nextInt();
-        System.out.print("Enter Hotel ID: ");
-        int hotelId = sc.nextInt();
-        System.out.print("Enter Booking Date (YYYY-MM-DD): ");
-        String bookingDate = sc.next();
-
-        Booking booking = new Booking(userId, hotelId, bookingDate);
-        if (bookingDAO.addBooking(booking)) {
-            System.out.println("Booking added successfully!");
-        } else {
-            System.out.println("Failed to add booking.");
-        }
-    }
-
     public void viewBookings() {
         List<Booking> bookings = bookingDAO.getAllBookings();
         bookingView.displayBookings(bookings);

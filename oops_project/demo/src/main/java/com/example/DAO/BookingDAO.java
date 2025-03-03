@@ -1,8 +1,13 @@
 package com.example.dao;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
 import com.example.model.Booking;
 
 public class BookingDAO {
@@ -12,18 +17,7 @@ public class BookingDAO {
         this.connection = DBConnection.getConnection();
     }
 
-    public boolean addBooking(Booking booking) {
-        String query = "INSERT INTO bookings (user_id, hotel_id, booking_date) VALUES (?, ?, ?)";
-        try (PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setInt(1, booking.getUserId());
-            stmt.setInt(2, booking.getHotelId());
-            stmt.setString(3, booking.getBookingDate());
-            return stmt.executeUpdate() > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
+    
 
     public List<Booking> getAllBookings() {
         List<Booking> bookings = new ArrayList<>();

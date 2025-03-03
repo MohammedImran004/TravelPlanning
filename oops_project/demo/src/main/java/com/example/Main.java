@@ -10,5 +10,4 @@ public class Main {
         app.run();
         sc.close();
     }
-
 }

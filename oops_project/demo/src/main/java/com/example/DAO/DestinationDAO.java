@@ -31,16 +31,13 @@ public class DestinationDAO {
         String query = "SELECT * FROM destination";
         try (Connection con = DBConnection.getConnection();
             Statement stmt = con.createStatement();
-           
-            
             ResultSet rs = stmt.executeQuery(query)) {
                 while (rs.next()) {
                     int id = rs.getInt("destination_id");
                     String name = rs.getString("name");
-                    String description = rs.getString("location");
-                    System.out.println("Retrieved: ID=" + id + ", Name=" + name + ", Description=" + description);
-                }
-            while (rs.next()) {
+                    String location = rs.getString("location");
+                    String description = rs.getString("description");
+                    // System.out.println("Retrieved: ID=" + id + ", Name=" + name + "Location="+location+", Description=" + description);
                 destinations.add(new Destination(
                     rs.getInt("destination_id"), 
                     rs.getString("name"), 
@@ -54,7 +51,7 @@ public class DestinationDAO {
     }
 
     public Destination getDestinationById(int id) {
-        String query = "SELECT * FROM destination WHERE id = ?";
+        String query = "SELECT * FROM destination WHERE destination_id = ?";
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(query)) {
             ps.setInt(1, id);
@@ -73,7 +70,7 @@ public class DestinationDAO {
     }
 
     public boolean updateDestination(Destination destination) {
-        String query = "UPDATE destination SET name = ?, description = ?, location = ? WHERE id = ?";
+        String query = "UPDATE destination SET name = ?, description = ?, location = ? WHERE destination_id = ?";
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(query)) {
             ps.setInt(4, destination.getId());
@@ -88,7 +85,7 @@ public class DestinationDAO {
     }
 
     public boolean deleteDestination(int id) {
-        String query = "DELETE FROM destination WHERE id = ?";
+        String query = "DELETE FROM destination WHERE destination_id = ?";
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(query)) {
             ps.setInt(1, id);

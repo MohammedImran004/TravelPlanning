@@ -15,22 +15,6 @@ public class DestinationController {
         this.sc = new Scanner(System.in);
     }
 
-    public void addDestination() {
-        System.out.print("Enter Destination Name: ");
-        String name = sc.next();
-        System.out.print("Enter Location: ");
-        String location = sc.next();
-        System.out.print("Enter Description: ");
-        String description = sc.next();
-
-        Destination destination = new Destination(name, location, description);
-        if (destinationDAO.addDestination(destination)) {
-            System.out.println("Destination added successfully!");
-        } else {
-            System.out.println("Failed to add destination.");
-        }
-    }
-
     public void viewDestinations() {
         List<Destination> destinations = destinationDAO.getAllDestinations();
         for (Destination d : destinations) {
@@ -45,11 +29,11 @@ public class DestinationController {
 
         if (destination != null) {
             System.out.print("Enter New Name (or press Enter to keep existing): ");
-            String name = sc.next();
+            String name = sc.nextLine();
             System.out.print("Enter New Location (or press Enter to keep existing): ");
-            String location = sc.next();
+            String location = sc.nextLine();
             System.out.print("Enter New Description (or press Enter to keep existing): ");
-            String description = sc.next();
+            String description = sc.nextLine();
 
             if (!name.isEmpty()) destination.setName(name);
             if (!location.isEmpty()) destination.setLocation(location);

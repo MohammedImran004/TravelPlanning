@@ -15,6 +15,10 @@ public class Hotel {
         this.name = name;
         this.type = type;
     }
+    public Hotel(String name, String type) {
+        this.name = name;
+        this.type = type;
+    }
 
     public int getId() {
         return id;

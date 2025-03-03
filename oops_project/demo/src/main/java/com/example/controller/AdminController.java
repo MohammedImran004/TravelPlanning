@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 import com.example.dao.AdminDAO;
 import com.example.model.Admin;
+import com.example.model.Destination;
+import com.example.model.Hotel;
 import com.example.view.AdminView;
 public class AdminController {
     private AdminDAO adminDAO;
@@ -44,7 +46,7 @@ public class AdminController {
                     int choice = sc.nextInt();
 
                     switch (choice) {
-                        case 1: destinationController.addDestination(); break;
+                        case 1: addDestination(); break;
                         case 2: destinationController.viewDestinations(); break;
                         case 3: destinationController.updateDestination(); break;
                         case 4: destinationController.deleteDestination(); break;
@@ -56,11 +58,10 @@ public class AdminController {
                         case 10: viewAdmins(); break;
                         case 11: updateAdmin(); break;
                         case 12: deleteAdmin(); break;
-                        case 13: hotelController.addHotel(); break;
+                        case 13: addHotel(); break;
                         case 14: hotelController.viewHotels(); break;
                         case 15: hotelController.updateHotel(); break;
                         case 16: hotelController.deleteHotel(); break;
-                        case 17: bookingController.addBooking(); break;
                         case 18: bookingController.viewBookings(); break;
                         case 19: bookingController.updateBooking(); break;
                         case 20: bookingController.deleteBooking(); break;
@@ -141,15 +142,12 @@ public class AdminController {
             String email = sc.nextLine();
             System.out.print("Enter New Password (or press Enter to keep existing password): ");
             String password = sc.nextLine();
-    
             // Preserve existing values if input is empty
             if (name.trim().isEmpty()) name = admin.getName();
             if (email.trim().isEmpty()) email = admin.getEmail();
             if (password.trim().isEmpty()) password = admin.getPassword();
-    
             // Ensure updated admin object retains the original ID
             Admin updatedAdmin = new Admin(id, name, email, password); 
-            
             if (adminDAO.updateAdmin(updatedAdmin)) {
                 System.out.println("Admin updated successfully!");
             } else {
@@ -159,7 +157,6 @@ public class AdminController {
             System.out.println("Admin not found!");
         }
     }
-    
     public void deleteAdmin() {
         System.out.print("Enter Admin ID to delete: ");
         int id = sc.nextInt();
@@ -169,4 +166,34 @@ public class AdminController {
             System.out.println("Failed to delete admin.");
         }
     }
+     public void addHotel() {
+        System.out.print("Enter Hotel Name: ");
+        String name = sc.nextLine();
+        System.out.print("Enter Hotel Type: ");
+        String type = sc.next();
+
+        Hotel hotel = new Hotel(name, type); 
+        if (adminDAO.addHotel(hotel)) {
+            System.out.println("Hotel added successfully!");
+        } else {
+            System.out.println("Failed to add hotel.");
+        }
+    }
+    public void addDestination() {
+        System.out.print("Enter Destination Name: ");
+        String name = sc.nextLine();
+        System.out.print("Enter Location: ");
+        String location = sc.nextLine();
+        System.out.print("Enter Description: ");
+        String description = sc.nextLine();
+
+        Destination destination = new Destination(name, location, description);
+        if (adminDAO.addDestination(destination)) {
+            System.out.println("Destination added successfully!");
+        } else {
+            System.out.println("Failed to add destination.");
+        }
+    }
+    
+
 }

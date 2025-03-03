@@ -1,36 +1,34 @@
 package com.example.model;
-
 public class Destination {
     private int id;
     private String name;
     private String description;
-    private  String location;
-    // Constructor for adding a new destination (without ID)
-    public Destination(String name, String description) {
-        this.name = name;
-        this.description = description;
-    }
+    private String location;
 
-    // Constructor for retrieving/updating destination (with ID)
-    public Destination(int id, String name, String description) {
+    // Constructor with all fields
+    public Destination(int id, String name, String location, String description) {
         this.id = id;
         this.name = name;
+        this.location = location;
         this.description = description;
     }
 
-    public Destination(String name2, String location2, String description2) {
-        //TODO Auto-generated constructor stub
+    // Constructor without id (for cases where ID is auto-generated)
+    public Destination(String name, String location, String destination) {
+        this.name = name;
+        this.location = location;
+        this.description = description;
     }
 
-    public Destination(int int1, String string, String string2, String string3) {
-        //TODO Auto-generated constructor stub
+    // Default constructor (optional)
+    public Destination() {
     }
 
-    // Getters and Setters
+    // Getters and Setters (optional but recommended)
     public int getId() {
         return id;
     }
-    
+
     public void setId(int id) {
         this.id = id;
     }
@@ -51,11 +49,6 @@ public class Destination {
         this.description = description;
     }
 
-    @Override
-    public String toString() {
-        return "Destination [ID=" + id + ", Name=" + name + ", Description=" + description + "]";
-    }
-
     public String getLocation() {
         return location;
     }
@@ -63,4 +56,11 @@ public class Destination {
     public void setLocation(String location) {
         this.location = location;
     }
+
+    @Override
+    public String toString() {
+        return "Destination [id=" + id + ", name=" + name + ", description=" + description + ", location=" + location
+                + "]";
+    }
+    
 }
